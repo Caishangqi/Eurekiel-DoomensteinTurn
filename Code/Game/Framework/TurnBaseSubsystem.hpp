@@ -5,6 +5,7 @@
 #include "Engine/Math/EulerAngles.hpp"
 #include "Engine/Math/Vec3.hpp"
 
+class WidgetTurnSequence;
 class CameraDirector;
 struct CharacterSlot;
 class Actor;
@@ -59,8 +60,9 @@ public:
     void SetScenePlayerData(PlayerController* player); // Temporary, we need push the Root state that handle camera reset and hanging to stack
 
     /// Getter
-    bool   GetIsInBattle();
-    Scene* GetCurrentScene();
+    bool                GetIsInBattle();
+    Scene*              GetCurrentScene();
+    WidgetTurnSequence* GetWidgetTurnSequence() { return m_widgetTurnSequence; }
 
     void Startup();
     void Shutdown();
@@ -87,4 +89,7 @@ private:
 
     /// Debug Testing
     bool m_bIsBattleStart = false;
+
+    /// Widget
+    WidgetTurnSequence* m_widgetTurnSequence = nullptr;
 };

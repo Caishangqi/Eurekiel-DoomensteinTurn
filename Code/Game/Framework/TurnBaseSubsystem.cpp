@@ -3,6 +3,7 @@
 #include <cstdio>
 
 #include "PlayerController.hpp"
+#include "WidgetSubsystem.hpp"
 #include "Engine/Core/Clock.hpp"
 #include "Engine/Core/StringUtils.hpp"
 #include "Engine/Input/InputSystem.hpp"
@@ -15,6 +16,7 @@
 #include "Game/Gameplay/Battle/CameraDirector.hpp"
 #include "Game/Gameplay/Battle/State/ITurnState.hpp"
 #include "Game/Gameplay/Battle/State/StateRound.hpp"
+#include "Game/Gameplay/Widget/WidgetTurnSequence.hpp"
 
 
 TurnBaseSubsystem::TurnBaseSubsystem(TurnBaseSystemConfig config): m_config(config)
@@ -172,12 +174,20 @@ void TurnBaseSubsystem::StartBattle(std::string sceneName, std::vector<std::stri
     metaData.m_targetRotation    = m_scene->m_definition->m_sceneCenterOrientation + Vec3(-5.f, 0.f, 0.f);
 
     m_cameraDirector->PushState(ICameraState(metaData, g_theGame->GetLocalPlayer(1)));
-    PushState(new StateRound());
+    if (!m_widgetTurnSequence)
+    {
+        m_widgetTurnSequence = new WidgetTurnSequence();
+    }
+    StateRound* roundState = new StateRound();
+    PushState(roundState);
+    m_widgetTurnSequence->AddToViewport();
 }
 
 void TurnBaseSubsystem::ExitBattle()
 {
     RetrievePlayerWorldData(g_theGame->GetLocalPlayer(1));
+    m_widgetTurnSequence->RemoveFromViewport();
+
     m_bIsBattleStart = false;
     delete m_scene;
     m_scene = nullptr;
