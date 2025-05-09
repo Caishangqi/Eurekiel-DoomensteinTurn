@@ -61,6 +61,8 @@ Game::Game()
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/Hand_0.png");
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/Hand_2.png");
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/character-hud.png");
+    g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/sequence-label-main.png");
+    g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/sequence-label-sub.png");
 
     /// Rasterize
     g_theRenderer->SetRasterizerMode(RasterizerMode::SOLID_CULL_BACK);
