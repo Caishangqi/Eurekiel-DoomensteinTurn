@@ -5,7 +5,7 @@
             shader="Data/Shaders/Diffuse"
             spriteSheetTexture="Data/Images/Terrain_8x8.png"
             spriteSheetCellCount="8,8"
-            sceneCenter="5.0,8.0,2.0"
+            sceneCenter="6.0,8.0,2.0"
             sceneCenterOrientation="0.0,20.0,0.0">
         <StageSlot position="10.0,7.0,0.0" orientation="0.0,0.0,0.0"/>
         <CharacterSlots>
