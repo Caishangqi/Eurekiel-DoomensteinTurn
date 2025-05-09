@@ -3,6 +3,7 @@
 
 #include "ITurnState.hpp"
 
+class WidgetTurnSequence;
 struct InitiativeEntry;
 class Character;
 class TurnBaseSubsystem;
@@ -17,6 +18,11 @@ public:
     bool GetIsFinished() const override;
     void OnEnter() override;
     void Exit() override;
+
+public:
+    /// Getters
+    std::vector<InitiativeEntry>& GetInitiativeEntries() { return m_entries; }
+    size_t                        GetCharacterRoundIndex() { return m_ix; }
 
 private:
     void BuildInitiativeList(); // roll & sort

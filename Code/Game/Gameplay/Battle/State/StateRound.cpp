@@ -7,6 +7,7 @@
 #include "Game/Framework/TurnBaseSubsystem.hpp"
 #include "Game/Gameplay/Character.hpp"
 #include "Game/Gameplay/Battle/Scene.hpp"
+#include "Game/Gameplay/Widget/WidgetTurnSequence.hpp"
 
 StateRound::StateRound()
 {
@@ -15,7 +16,8 @@ StateRound::StateRound()
 
 void StateRound::OnInit()
 {
-    BuildInitiativeList(); // 排速
+    BuildInitiativeList(); // Speed Sequence
+    m_turnBaseSubsystem->GetWidgetTurnSequence()->InjectRoundState(this);
     for (auto& e : m_entries)
         e.character->OnRoundStart();
 }
