@@ -4,6 +4,7 @@
         <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
         <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
         <Visuals size="0.7,0.7" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Avatar name = "Caizii" path = "Data/Images/Animation/Caizii/Avatar.png"/>
             <Animations defaultAnimation="Caizii.Idle">
                 <RegisterAnimation state="Idle" animationName="Caizii.Idle"/>
                 <RegisterAnimation state="Hurt" animationName="Caizii.Hurt"/>
@@ -31,6 +32,7 @@
         <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
         <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
         <Visuals size="0.7,0.7" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Avatar name = "Yellow" path = "Data/Images/Animation/Yellow/Avatar.png"/>
             <Animations defaultAnimation="Yellow.Idle">
                 <RegisterAnimation state="Idle" animationName="Yellow.Idle"/>
                 <RegisterAnimation state="Hurt" animationName="Yellow.Hurt"/>
@@ -58,6 +60,7 @@
         <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
         <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
         <Visuals size="2.4,2.4" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Avatar name = "CavelingBrute" path = "Data/Images/Animation/CavelingBrute/Avatar.png"/>
             <Animations defaultAnimation="CavelingBrute.Idle">
                 <RegisterAnimation state="Idle" animationName="CavelingBrute.Idle"/>
                 <RegisterAnimation state="Attack" animationName="CavelingBrute.Attack"/>
@@ -83,6 +86,7 @@
         <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
         <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
         <Visuals size="0.6,0.6" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Avatar name = "Caveling" path = "Data/Images/Animation/Caveling/Avatar.png"/>
             <Animations defaultAnimation="Caveling.Idle">
                 <RegisterAnimation state="Idle" animationName="Caveling.Idle"/>
                 <RegisterAnimation state="Hurt" animationName="Caveling.Hurt"/>

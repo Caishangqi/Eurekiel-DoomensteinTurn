@@ -96,6 +96,14 @@ CharacterDefinition::CharacterDefinition(const XmlElement& characterDefElement)
         m_renderLit     = ParseXmlAttribute(*visualsElement, "renderLit", m_renderLit);
         m_renderRounded = ParseXmlAttribute(*visualsElement, "renderRounded", m_renderRounded);
         m_shader        = g_theRenderer->CreateShaderFromFile(ParseXmlAttribute(*visualsElement, "shader", m_name).c_str(), VertexType::Vertex_PCUTBN);
+
+        const XmlElement* avatarElement = FindChildElementByName(*visualsElement, "Avatar");
+        if (avatarElement)
+        {
+            std::string path = ParseXmlAttribute(*avatarElement, "path", std::string(""));
+            m_avatar         = g_theRenderer->CreateOrGetTextureFromFile(path.c_str());
+        }
+
         if (visualsElement->ChildElementCount() > 0) // Load Animations
         {
             const XmlElement* animationElement = FindChildElementByName(*visualsElement, "Animations");

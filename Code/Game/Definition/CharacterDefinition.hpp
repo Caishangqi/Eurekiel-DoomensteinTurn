@@ -6,6 +6,7 @@
 #include "Engine/Math/FloatRange.hpp"
 #include "Engine/Math/Vec2.hpp"
 
+class Texture;
 class ISkill;
 class AnimationDefinition;
 class Shader;
@@ -59,6 +60,7 @@ public:
     bool        m_renderLit     = false;
     bool        m_renderRounded = false;
     Shader*     m_shader        = nullptr;
+    Texture*    m_avatar        = nullptr;
 
     /// Skills (Preload)
     std::vector<ISkill*> m_skills;
