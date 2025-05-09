@@ -8,12 +8,13 @@ public:
     StateCharacterTurn(Character* character);
     ~StateCharacterTurn() override;
 
-    void Update(float dt) override;
-    bool GetIsFinished() const override;
-    void OnInit() override;
-    void OnEnter() override;
-    void Exit() override;
-    bool GetCharacterTurnOver();
+    void       Update(float dt) override;
+    bool       GetIsFinished() const override;
+    void       OnInit() override;
+    void       OnEnter() override;
+    void       Exit() override;
+    bool       GetCharacterTurnOver();
+    Character* GetCharacter() { return m_character; }
 
 private:
     Character* m_character          = nullptr;

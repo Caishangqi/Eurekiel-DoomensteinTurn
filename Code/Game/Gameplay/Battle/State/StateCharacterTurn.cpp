@@ -5,6 +5,7 @@
 #include "Game/Definition/CharacterDefinition.hpp"
 #include "Game/Framework/TurnBaseSubsystem.hpp"
 #include "Game/Gameplay/Battle/Scene.hpp"
+#include "Game/Gameplay/Widget/WidgetTurnSequence.hpp"
 
 StateCharacterTurn::StateCharacterTurn(Character* character): m_character(character)
 {
@@ -28,6 +29,7 @@ bool StateCharacterTurn::GetIsFinished() const
 void StateCharacterTurn::OnInit()
 {
     printf("StateCharacterTurn::OnInit       Character State OnInit, owner: %s\n", m_character->GetCharacterDefinition()->m_name.c_str());
+    m_turnBaseSubsystem->GetWidgetTurnSequence()->InjectCharacterTurnState(this);
 }
 
 void StateCharacterTurn::OnEnter()
