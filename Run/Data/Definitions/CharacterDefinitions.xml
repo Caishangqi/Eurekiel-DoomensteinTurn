@@ -1,0 +1,106 @@
+﻿<Definitions>
+    <CharacterDefinition name="Caizii" faction="Friend" health="40" canBePossessed="true" corpseLifetime="2.0" visible="true">
+        <Collision radius="0.25" height="0.6" collidesWithWorld="true" collidesWithActors="true"/>
+        <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
+        <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
+        <Visuals size="0.7,0.7" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Animations defaultAnimation="Caizii.Idle">
+                <RegisterAnimation state="Idle" animationName="Caizii.Idle"/>
+                <RegisterAnimation state="Hurt" animationName="Caizii.Hurt"/>
+                <RegisterAnimation state="Attack" animationName="Caizii.Attack"/>
+                <RegisterAnimation state="Attack_AOE" animationName="Caizii.Attack_AOE"/>
+                <RegisterAnimation state="Dead" animationName="Caizii.Dead"/>
+            </Animations>
+        </Visuals>
+        <Attributes
+                baseSpeed="20"
+                basePhysicAttack="10"
+                baseShieldPoint="2"
+        />
+        <Skills>
+            <Skill name="SkillBaseAttack" alias="Base Attack" maxTargets="1" scope="Enemy" physicAttackMultiplier="0.8" animation="Attack"/>
+            <Skill name="SkillBaseAttack" alias="AOE Attack" maxTargets="3" scope="Enemy" physicAttackMultiplier="0.3" animation="Attack_AOE"/>
+        </Skills>
+        <Sounds>
+            <Sound sound="Hurt" name="Data/Audio/PlayerHurt.wav"/>
+            <Sound sound="Death" name="Data/Audio/PlayerDeath1.wav"/>
+        </Sounds>
+    </CharacterDefinition>
+    <CharacterDefinition name="Yellow" faction="Friend" health="100" canBePossessed="true" corpseLifetime="2.0" visible="true">
+        <Collision radius="0.25" height="0.6" collidesWithWorld="true" collidesWithActors="true"/>
+        <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
+        <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
+        <Visuals size="0.7,0.7" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Animations defaultAnimation="Yellow.Idle">
+                <RegisterAnimation state="Idle" animationName="Yellow.Idle"/>
+                <RegisterAnimation state="Hurt" animationName="Yellow.Hurt"/>
+                <RegisterAnimation state="Attack" animationName="Yellow.Attack"/>
+                <RegisterAnimation state="Attack_AOE" animationName="Yellow.Attack_AOE"/>
+                <RegisterAnimation state="Dead" animationName="Yellow.Dead"/>
+            </Animations>
+        </Visuals>
+        <Attributes
+                baseSpeed="10"
+                basePhysicAttack="14"
+                baseShieldPoint="2"
+        />
+        <Skills>
+            <Skill name="SkillBaseAttack" alias="Base Attack" maxTargets="1" scope="Enemy" physicAttackMultiplier="0.8" animation="Attack"/>
+            <Skill name="SkillBaseAttack" alias="AOE Attack" maxTargets="3" scope="Enemy" physicAttackMultiplier="0.3" animation="Attack_AOE"/>
+        </Skills>
+        <Sounds>
+            <Sound sound="Hurt" name="Data/Audio/PlayerHurt.wav"/>
+            <Sound sound="Death" name="Data/Audio/PlayerDeath1.wav"/>
+        </Sounds>
+    </CharacterDefinition>
+    <CharacterDefinition name="CavelingBrute" faction="Enemy" health="100" canBePossessed="true" corpseLifetime="2.0" visible="true">
+        <Collision radius="0.25" height="0.6" collidesWithWorld="true" collidesWithActors="true"/>
+        <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
+        <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
+        <Visuals size="2.4,2.4" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Animations defaultAnimation="CavelingBrute.Idle">
+                <RegisterAnimation state="Idle" animationName="CavelingBrute.Idle"/>
+                <RegisterAnimation state="Attack" animationName="CavelingBrute.Attack"/>
+                <RegisterAnimation state="Hurt" animationName="CavelingBrute.Hurt"/>
+                <RegisterAnimation state="Dead" animationName="CavelingBrute.Dead"/>
+            </Animations>
+        </Visuals>
+        <Attributes
+                baseSpeed="7"
+                basePhysicAttack="20"
+                baseShieldPoint="5"
+        />
+        <Skills>
+            <Skill name="SkillBaseAttack" alias="Base Attack" maxTargets="1" scope="Friend" physicAttackMultiplier="0.8" animation="Attack" moveToTarget="true" moveToOffSet="0.0,2.0,0.0"/>
+        </Skills>
+        <Sounds>
+            <Sound sound="Hurt" name="Data/Audio/PlayerHurt.wav"/>
+            <Sound sound="Death" name="Data/Audio/PlayerDeath1.wav"/>
+        </Sounds>
+    </CharacterDefinition>
+    <CharacterDefinition name="Caveling" faction="Enemy" health="100" canBePossessed="true" corpseLifetime="2.0" visible="true">
+        <Collision radius="0.25" height="0.6" collidesWithWorld="true" collidesWithActors="true"/>
+        <Physics simulated="true" walkSpeed="1.5f" runSpeed="6.0f" turnSpeed="180.0f" drag="9.0f"/>
+        <Camera eyeHeight="0.5" cameraFOV="60.0f"/>
+        <Visuals size="0.6,0.6" pivot="0.5,0.0" billboardType="WorldUpFacing" renderLit="true" renderRounded="true" shader="Data/Shaders/Diffuse">
+            <Animations defaultAnimation="Caveling.Idle">
+                <RegisterAnimation state="Idle" animationName="Caveling.Idle"/>
+                <RegisterAnimation state="Hurt" animationName="Caveling.Hurt"/>
+                <RegisterAnimation state="Attack" animationName="Caveling.Attack"/>
+                <RegisterAnimation state="Dead" animationName="Caveling.Dead"/>
+            </Animations>
+        </Visuals>
+        <Attributes
+                baseSpeed="5"
+                basePhysicAttack="5"
+                baseShieldPoint="1"
+        />
+        <Skills>
+            <Skill name="SkillBaseAttack" alias="Base Attack" maxTargets="1" scope="Friend" physicAttackMultiplier="0.8" animation="Attack" moveToTarget="true" moveToOffSet="1.0,0.0,0.0"/>
+        </Skills>
+        <Sounds>
+            <Sound sound="Hurt" name="Data/Audio/PlayerHurt.wav"/>
+            <Sound sound="Death" name="Data/Audio/PlayerDeath1.wav"/>
+        </Sounds>
+    </CharacterDefinition>
+</Definitions>

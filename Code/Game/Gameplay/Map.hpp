@@ -1,0 +1,125 @@
+﻿#pragma once
+#include <vector>
+
+#include "Actor.hpp"
+#include "Tile.hpp"
+#include "Engine/Math/IntVec2.hpp"
+#include "Engine/Math/RaycastUtils.hpp"
+#include "Game/Definition/MapDefinition.hpp"
+
+
+struct ActorHandle;
+class VertexBuffer;
+class Texture;
+struct Vertex_PCUTBN;
+class Game;
+class MapDefinition;
+class IndexBuffer;
+class Shader;
+struct RaycastResult3D;
+class Actor;
+class AABB2;
+class AABB3;
+struct Vertex_PCU;
+struct LightingConstants;
+
+class Map
+{
+    friend class PlayerController;
+    friend class Weapon;
+    friend class Actor;
+
+public:
+    Map(Game* game, const MapDefinition* definition);
+    ~Map();
+
+    void CreateTiles();
+    void CreateGeometry();
+    void AddGeometryForWall(std::vector<Vertex_PCUTBN>& vertexes, std::vector<unsigned int>& indices, const AABB3& bounds, const AABB2& UVs) const;
+    void AddGeometryForFloor(std::vector<Vertex_PCUTBN>& vertexes, std::vector<unsigned int>& indices, const AABB3& bounds, const AABB2& UVs) const;
+    void AddGeometryForCeiling(std::vector<Vertex_PCUTBN>& vertexes, std::vector<unsigned int>& indices, const AABB3& bounds, const AABB2& UVs) const;
+    void CreateBuffers();
+
+    bool    IsPositionInBounds(Vec3 position, float tolerance = 0.f) const;
+    IntVec2 GetTileCoordsForWorldPos(const Vec2& worldCoords);
+    IntVec2 GetTileCoordsForWorldPos(const Vec3& worldCoords);
+    bool    AreCoordsInBounds(int x, int y) const;
+    bool    AreCoordsInBounds(IntVec2 coords) const;
+    Tile*   GetTile(int x, int y);
+    Tile*   GetTile(IntVec2 coords);
+    Tile*   GetTile(const Vec2& worldCoords);
+    bool    GetTileIsInBound(const IntVec2& coords);
+    bool    GetTileIsSolid(const IntVec2& coords);
+
+    void Update();
+    void EndFrame();
+    void ColliedWithActors();
+    void ColliedActors(Actor* actorA, Actor* actorB);
+    void ColliedActorsWithMap();
+    void ColliedActorWithMap(Actor* actor);
+    void PushActorOutOfTile(Actor* actor, const IntVec2& tileCoords);
+
+    void              Render();
+    void              SetMapRenderContext(PlayerController* toPlayer); // Set the render context, means render to which player at this time this frame.
+    LightingConstants GetLightConstants();
+    /// Raycast
+    RaycastResult3D RaycastAll(const Vec3& start, const Vec3& direction, float distance);
+    RaycastResult3D RaycastAll(Actor* actor, ActorHandle& resultActorHit, const Vec3& start, const Vec3& direction, float distance);
+    RaycastResult3D RaycastWorldXY(const Vec3& start, const Vec3& direction, float distance);
+    RaycastResult3D RaycastWorldZ(const Vec3& start, const Vec3& direction, float distance);
+    RaycastResult3D RaycastWorldActors(const Vec3& start, const Vec3& direction, float distance);
+    RaycastResult3D RaycastWorldActors(Actor* actor, ActorHandle& resultActorHit, const Vec3& start, const Vec3& direction, float distance);
+
+    ///
+    /// Lighting
+    void HandleDecreaseSunDirectionX();
+    void HandleIncreaseSunDirectionX();
+    void HandleDecreaseSunDirectionY();
+    void HandleIncreaseSunDirectionY();
+    void HandleDecreaseSunIntensity();
+    void HandleIncreaseSunIntensity();
+    void HandleDecreaseAmbientIntensity();
+    void HandleIncreaseAmbientIntensity();
+    /// 
+    /// Actor
+    Actor* AddActorsToMap(Actor* actor);
+    Actor* SpawnActor(const SpawnInfo& spawnInfo);
+    Actor* SpawnPlayer(PlayerController* playerController); // Spawn a marine actor at a random spawn point and possess it with the player.
+    void   CheckAndRespawnPlayer();
+    Actor* GetActorByHandle(ActorHandle handle) const;
+    Actor* GetActorByName(const std::string& name) const;
+    Actor* GetClosestVisibleEnemy(Actor* instigator); //Search the actor list to find actors meeting the provided criteria.
+    void   GetActorsByName(std::vector<Actor*>& inActors, const std::string& name) const;
+    Actor* DebugPossessNext(); // Have the player controller possess the next actor in the list that can be possessed
+    void   DeleteDestroyedActors(); // Delete any actors marked as destroyed.
+
+    /// 
+    Game* m_game = nullptr;
+
+protected:
+    // Map
+    const MapDefinition* m_definition = nullptr;
+    std::vector<Tile>    m_tiles;
+    IntVec2              m_dimensions;
+
+    /// Actors
+    std::vector<Actor*>           m_actors;
+    static constexpr unsigned int MAX_ACTOR_UID  = 0x0000fffeu;
+    unsigned int                  m_nextActorUID = 3568;
+    /// 
+
+    /// Lighting
+    Vec3  m_sunDirection     = Vec3(2, -1, -1);
+    float m_sunIntensity     = 0.85f;
+    float m_ambientIntensity = 0.35f;
+    /// 
+
+    // Rendering
+    std::vector<Vertex_PCUTBN> m_vertexes;
+    std::vector<unsigned int>  m_indices;
+    Texture*                   m_texture       = nullptr;
+    Shader*                    m_shader        = nullptr;
+    VertexBuffer*              m_vertexBuffer  = nullptr;
+    IndexBuffer*               m_indexBuffer   = nullptr;
+    PlayerController*          m_renderContext = nullptr; // Set The Current map render context, means render to which player (multiplayer compatibility support)
+};
