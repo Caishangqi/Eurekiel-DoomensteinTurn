@@ -10,7 +10,6 @@ public:
     WidgetWorldPopup(Vec3& position, Actor* pointActor);
     ~WidgetWorldPopup() override;
 
-public:
     void Draw() const override;
     void Update() override;
 

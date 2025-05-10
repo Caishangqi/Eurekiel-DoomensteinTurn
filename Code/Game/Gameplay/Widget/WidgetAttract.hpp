@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Game/Framework/Widget.hpp"
 
+class Texture;
+
 class WidgetAttract : public Widget
 {
 public:
@@ -17,7 +19,7 @@ protected:
     void UpdateKeyInput();
 
 private:
-    float FluctuateValue(float value, float amplitude, float frequency, float deltaTime);
+    float FluctuateValue(float value, float amplitude, float frequency, float deltaTime) const;
 
     float m_iconCircleRadius           = 200;
     float m_currentIconCircleThickness = 0.f;
@@ -28,4 +30,7 @@ private:
     std::string m_lowerInfoString = "Press SPACE to join with mouse and keyboard\n"
         "Press START to koin with controller\n"
         "Press ESCAPE or BACK to exit\n";
+
+    Texture* m_textureTitle = nullptr;
+    AABB2    m_TitleBounds;
 };

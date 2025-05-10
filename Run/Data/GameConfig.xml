@@ -1,8 +1,8 @@
 <GameConfig
         defaultMap="TestMap"
         musicVolume="0.1"
-        mainMenuMusic="Data/Audio/Music/MainMenu_InTheDark.mp2"
-        gameMusic="Data/Audio/Music/BattleBegin.mp3"
+        mainMenuMusic="Data/Audio/Music/MainMenu.mp3"
+        gameMusic="Data/Audio/Music/Background.mp3"
         buttonClickSound="Data/Audio/Click.mp3"
         windowAspect="2.0"
         clientSizeY="800"

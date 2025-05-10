@@ -54,7 +54,7 @@ void LoggerSubsystem::Log(ELogCategory cat, ELogVerbosity v, const char* file, i
 
     std::lock_guard<std::mutex> guard(m_printMutex); // thread safe
     printf("[%s][%s] (%s:%d) %s\n",
-           catStr[static_cast<int>(log2(uint32_t(cat)))], // mapping
+           catStr[static_cast<int>(log2(static_cast<uint32_t>(cat)))], // mapping
            verbStr[static_cast<int>(v)],
            fileName, line,
            buffer);

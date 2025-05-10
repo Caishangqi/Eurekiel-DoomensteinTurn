@@ -41,7 +41,6 @@ void WidgetSkillTargetSelection::Draw() const
     vertices.reserve(1024);
     AABB2 targetPopBound;
 
-
     Vec3    slotPosition  = m_potentialCharacters[m_currentTargetIndex]->GetSlot().m_slotCenter;
     Camera* worldCam      = m_character->GetController()->m_worldCamera;
     Vec2    size          = m_potentialCharacters[m_currentTargetIndex]->GetCharacterDefinition()->m_size;

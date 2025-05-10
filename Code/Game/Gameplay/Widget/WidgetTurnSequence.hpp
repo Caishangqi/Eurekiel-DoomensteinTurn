@@ -12,7 +12,6 @@ public:
     WidgetTurnSequence();
     ~WidgetTurnSequence() override;
 
-public:
     void Draw() const override;
     void Update() override;
 
@@ -22,7 +21,6 @@ public:
 private:
     void SetRenderState() const;
 
-private:
     StateRound*             m_StateRound         = nullptr;
     StateCharacterTurn*     m_StateCharacterTurn = nullptr;
     std::vector<Character*> m_charactersDrawingSub;

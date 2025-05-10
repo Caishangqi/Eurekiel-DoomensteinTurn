@@ -167,9 +167,6 @@ ActorDefinition::ActorDefinition(const XmlElement& actorDefElement)
         m_dungeonData.m_interactRadius      = ParseXmlAttribute(*dungeonElement, "interactRadius", m_dungeonData.m_interactRadius);
         m_dungeonData.m_destroyWhenFinished = ParseXmlAttribute(*dungeonElement, "destroyWhenFinished", m_dungeonData.m_destroyWhenFinished);
     }
-
-    
-    
 }
 
 AnimationGroup* ActorDefinition::GetAnimationGroupByName(std::string& name)

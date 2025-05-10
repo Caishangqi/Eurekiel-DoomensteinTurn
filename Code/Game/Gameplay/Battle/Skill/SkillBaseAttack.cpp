@@ -73,7 +73,7 @@ bool SkillBaseAttack::StartAction(Character* instigator)
         DamageData dmg;
         dmg.m_instigator = instigator;
         dmg.m_damage     = static_cast<int>(m_physicAttackMultiplier *
-            float(instigator->GetCharacterDefinition()->m_basePhysicAttack));
+            static_cast<float>(instigator->GetCharacterDefinition()->m_basePhysicAttack));
 
         target->ReceiveDamage(dmg);
     }

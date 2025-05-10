@@ -178,7 +178,7 @@ void TurnBaseSubsystem::StartBattle(std::string sceneName, std::vector<std::stri
     {
         m_widgetTurnSequence = new WidgetTurnSequence();
     }
-    StateRound* roundState = new StateRound();
+    auto roundState = new StateRound();
     PushState(roundState);
     m_widgetTurnSequence->AddToViewport();
 }

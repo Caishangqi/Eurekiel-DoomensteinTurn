@@ -12,7 +12,7 @@
 WidgetTurnSequence::WidgetTurnSequence()
 {
     m_name                      = "WidgetTurnSequence";
-    m_boundingBox               = AABB2(Vec2(20.f, 680.f), Vec2(600.f, 780.f));
+    m_boundingBox               = AABB2(Vec2(20.f, 680.f), Vec2(400.f, 780.f));
     mainSequenceBounding        = m_boundingBox;
     mainSequenceBounding.m_mins = m_boundingBox.m_mins;
     mainSequenceBounding.m_maxs = m_boundingBox.m_mins + Vec2(m_boundingBox.GetDimensions().y, m_boundingBox.GetDimensions().y);
@@ -30,7 +30,7 @@ void WidgetTurnSequence::Draw() const
     std::vector<Vertex_PCU> vertices;
     vertices.reserve(1024);
 
-    AddVertsForAABB2D(vertices, m_boundingBox, Rgba8::DEBUG_WHITE_TRANSLUCENT);
+    AddVertsForAABB2D(vertices, m_boundingBox, Rgba8(0, 0, 0, 128));
     SetRenderState();
     g_theRenderer->BindTexture(nullptr);
     g_theRenderer->DrawVertexArray(vertices);
@@ -43,9 +43,11 @@ void WidgetTurnSequence::Draw() const
 
     if (m_StateRound)
     {
+        AABB2 bounding = mainSequenceBounding;
+        bounding.SetDimensions(mainSequenceBounding.GetDimensions() * 0.9f);
         std::vector<Vertex_PCU> verticesMainAvtar;
         verticesMainAvtar.reserve(64);
-        AddVertsForAABB2D(verticesMainAvtar, mainSequenceBounding, Rgba8::WHITE);
+        AddVertsForAABB2D(verticesMainAvtar, bounding, Rgba8::WHITE);
         g_theRenderer->BindTexture(m_StateRound->GetInitiativeEntries()[m_StateRound->GetCharacterRoundIndex()].character->GetCharacterDefinition()->m_avatar);
         g_theRenderer->DrawVertexArray(verticesMainAvtar);
     }
@@ -62,7 +64,7 @@ void WidgetTurnSequence::Draw() const
         g_theRenderer->DrawVertexArray(verticesSubSeq);
     }
 
-    for (int i = 0; i < (int)m_charactersDrawingSub.size(); i++)
+    for (int i = 0; i < static_cast<int>(m_charactersDrawingSub.size()); i++)
     {
         std::vector<Vertex_PCU> verticesSubSeqImg;
         verticesSubSeqImg.reserve(64);
@@ -86,7 +88,7 @@ void WidgetTurnSequence::Update()
     std::vector<InitiativeEntry>& entries = m_StateRound->GetInitiativeEntries();
     size_t                        index   = m_StateRound->GetCharacterRoundIndex() + 1;
     if (index >= entries.size()) return;
-    std::vector<InitiativeEntry> subEntries(entries.begin() + (int)index, entries.end()); // Exclude The Main display, the subsequence characters
+    std::vector<InitiativeEntry> subEntries(entries.begin() + static_cast<int>(index), entries.end()); // Exclude The Main display, the subsequence characters
 
     for (InitiativeEntry& entry : subEntries)
     {
@@ -98,7 +100,7 @@ void WidgetTurnSequence::Update()
     }
 
     m_subSequenceBox.reserve(m_charactersDrawingSub.size());
-    for (int i = 0; i < (int)m_charactersDrawingSub.size(); ++i)
+    for (int i = 0; i < static_cast<int>(m_charactersDrawingSub.size()); ++i)
     {
         AABB2 boundingBox = mainSequenceBounding;
         Vec2  mainCenter  = mainSequenceBounding.GetCenter();

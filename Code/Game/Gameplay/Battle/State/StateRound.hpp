@@ -19,7 +19,6 @@ public:
     void OnEnter() override;
     void Exit() override;
 
-public:
     /// Getters
     std::vector<InitiativeEntry>& GetInitiativeEntries() { return m_entries; }
     size_t                        GetCharacterRoundIndex() { return m_ix; }

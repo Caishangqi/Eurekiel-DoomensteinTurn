@@ -43,6 +43,7 @@ Game::Game()
     SkillRegistration::LoadRegistrations();
     AnimationDefinition::LoadDefinitions("Data/Definitions/AnimationDefinitions.xml");
     CharacterDefinition::LoadDefinitions("Data/Definitions/CharacterDefinitions.xml");
+    ActorDefinition::LoadDefinitions("Data/Definitions/DungeonActorDefinitions.xml");
     /// Event Register
     g_theEventSystem->SubscribeEventCallbackFunction("GameExitEvent", GameExitEvent);
     g_theEventSystem->SubscribeEventCallbackFunction("GameStateChangeEvent", GameStateChangeEvent);
@@ -63,6 +64,7 @@ Game::Game()
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/character-hud.png");
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/sequence-label-main.png");
     g_theRenderer->CreateOrGetTextureFromFile("Data/Images/gui/sequence-label-sub.png");
+    g_theRenderer->CreateOrGetTextureFromFile("Data/Images/Title.png");
 
     /// Rasterize
     g_theRenderer->SetRasterizerMode(RasterizerMode::SOLID_CULL_BACK);

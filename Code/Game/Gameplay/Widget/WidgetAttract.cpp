@@ -1,6 +1,7 @@
 ﻿#include "WidgetAttract.hpp"
 
 #include "WidgetLobby.hpp"
+#include "Engine/Core/VertexUtils.hpp"
 #include "Engine/Input/InputSystem.hpp"
 #include "Engine/Renderer/BitmapFont.hpp"
 #include "Engine/Renderer/Renderer.hpp"
@@ -13,12 +14,15 @@
 
 WidgetAttract::WidgetAttract()
 {
-    m_name = "WidgetAttract";
+    m_name         = "WidgetAttract";
+    m_textureTitle = g_theRenderer->CreateOrGetTextureFromFile("Data/Images/Title.png");
     g_theEventSystem->SubscribeEventCallbackFunction("GameStateChangeEvent", OnStateChange);
     m_lowerInfoStringVertex.reserve(1024);
     SoundID         mainMenuSoundID    = g_theAudio->CreateOrGetSound(g_gameConfigBlackboard.GetValue("mainMenuMusic", ""));
     SoundPlaybackID mainMenuPlaybackID = g_theAudio->StartSound(mainMenuSoundID, true, 0.5f);
     g_theResourceSubsystem->CachedSoundPlaybackID(mainMenuPlaybackID, mainMenuSoundID);
+    m_TitleBounds.SetDimensions(Vec2(960, 540));
+    m_TitleBounds.SetCenter(Vec2(800, 400));
 }
 
 WidgetAttract::~WidgetAttract()
@@ -37,6 +41,19 @@ void WidgetAttract::Draw() const
     BitmapFont* g_testFont = g_theRenderer->CreateOrGetBitmapFont("Data/Fonts/SquirrelFixedFont");
     g_theRenderer->BindTexture(&g_testFont->GetTexture());
     g_theRenderer->DrawVertexArray(m_lowerInfoStringVertex);
+
+    std::vector<Vertex_PCU> titleVertices;
+    titleVertices.reserve(1024);
+    AddVertsForAABB2D(titleVertices, m_TitleBounds, Rgba8::WHITE);
+    float degrees   = FluctuateValue(5, 10, 2, g_theGame->m_clock->GetTotalSeconds());
+    float scale     = FluctuateValue(1.0f, 0.25f, 1.5, g_theGame->m_clock->GetTotalSeconds());
+    Mat44 transform = Mat44::MakeUniformScale2D(scale);
+    transform.AppendZRotation(degrees);
+    TransformVertexArray3D(titleVertices, transform);
+
+
+    g_theRenderer->BindTexture(m_textureTitle);
+    g_theRenderer->DrawVertexArray(titleVertices);
 }
 
 void WidgetAttract::Update()
@@ -100,7 +117,7 @@ void WidgetAttract::UpdateKeyInput()
     }
 }
 
-float WidgetAttract::FluctuateValue(float value, float amplitude, float frequency, float deltaTime)
+float WidgetAttract::FluctuateValue(float value, float amplitude, float frequency, float deltaTime) const
 {
     return value + amplitude * sinf(frequency * deltaTime);
 }
