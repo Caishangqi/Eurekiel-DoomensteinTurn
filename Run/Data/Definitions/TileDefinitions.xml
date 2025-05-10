@@ -1,6 +1,33 @@
 <Definitions>
-    <TileDefinition name="StoneFloor" isSolid="false" mapImagePixelColor="0,0,0" floorSpriteCoords="3,6" ceilingSpriteCoords="2,6"/>
+    <TileDefinition name="Barrier" isSolid="false" mapImagePixelColor="0,0,0" floorSpriteCoords="3,6" ceilingSpriteCoords="2,6"/>
     <TileDefinition name="WoodFloor" isSolid="false" mapImagePixelColor="48,48,48" floorSpriteCoords="0,6" ceilingSpriteCoords="2,6"/>
+    <TileDefinition name="SandFloor_Center" isSolid="false" mapImagePixelColor="48,48,100" floorSpriteCoords="4,7" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Up" isSolid="false" mapImagePixelColor="48,48,200" floorSpriteCoords="4,6" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Full" isSolid="false" mapImagePixelColor="48,48,20" floorSpriteCoords="4,5" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_TopLeft" isSolid="false" mapImagePixelColor="48,48,40" floorSpriteCoords="4,4" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_TopRight" isSolid="false" mapImagePixelColor="48,48,30" floorSpriteCoords="7,4" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_TopEdge1" isSolid="false" mapImagePixelColor="48,48,50" floorSpriteCoords="5,4" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_TopEdge2" isSolid="false" mapImagePixelColor="48,48,60" floorSpriteCoords="6,4" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeLeft1" isSolid="false" mapImagePixelColor="68,0,0" floorSpriteCoords="4,3" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeLeft2" isSolid="false" mapImagePixelColor="78,0,0" floorSpriteCoords="5,3" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeLeftConner" isSolid="false" mapImagePixelColor="88,0,0" floorSpriteCoords="6,3" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeBottom1" isSolid="false" mapImagePixelColor="0,68,0" floorSpriteCoords="4,2" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeBottom2" isSolid="false" mapImagePixelColor="0,78,0" floorSpriteCoords="5,2" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeRight1" isSolid="false" mapImagePixelColor="0,0,68" floorSpriteCoords="4,1" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeRight2" isSolid="false" mapImagePixelColor="0,0,78" floorSpriteCoords="5,1" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_EdgeRightConner" isSolid="false" mapImagePixelColor="0,0,88" floorSpriteCoords="6,1" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Middle1" isSolid="false" mapImagePixelColor="10,0,0" floorSpriteCoords="4,0" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Middle2" isSolid="false" mapImagePixelColor="20,0,0" floorSpriteCoords="5,0" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Middle3" isSolid="false" mapImagePixelColor="30,0,0" floorSpriteCoords="6,0" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="SandFloor_Middle4" isSolid="false" mapImagePixelColor="40,0,0" floorSpriteCoords="7,0" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletFloor1" isSolid="false" mapImagePixelColor="100,0,0" floorSpriteCoords="0,6" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletFloor2" isSolid="false" mapImagePixelColor="110,0,0" floorSpriteCoords="1,6" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletFloor3" isSolid="false" mapImagePixelColor="120,0,0" floorSpriteCoords="2,6" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletGrid1" isSolid="false" mapImagePixelColor="100,100,0" floorSpriteCoords="3,6" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletGrid2" isSolid="false" mapImagePixelColor="100,120,0" floorSpriteCoords="0,7" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletGrid2" isSolid="false" mapImagePixelColor="100,130,0" floorSpriteCoords="1,7" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletGrid3" isSolid="false" mapImagePixelColor="100,140,0" floorSpriteCoords="2,7" ceilingSpriteCoords="4,0"/>
+    <TileDefinition name="ToiletGrid4" isSolid="false" mapImagePixelColor="100,150,0" floorSpriteCoords="3,7" ceilingSpriteCoords="4,0"/>
     <TileDefinition name="BrickWall" isSolid="true" mapImagePixelColor="255,255,255" wallSpriteCoords="0,5"/>
     <TileDefinition name="WoodWall" isSolid="true" mapImagePixelColor="143,136,82" wallSpriteCoords="1,6"/>
     <TileDefinition name="OpenGrass" isSolid="false" mapImagePixelColor="0,128,0" floorSpriteCoords="2,1" ceilingSpriteCoords="4,3"/>

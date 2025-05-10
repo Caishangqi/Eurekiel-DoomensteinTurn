@@ -818,6 +818,20 @@ Actor* Map::GetActorByName(const std::string& name) const
     return nullptr;
 }
 
+std::vector<Actor*> Map::GetActorsByFaction(std::string& faction)
+{
+    std::vector<Actor*> pendingActors;
+    pendingActors.reserve(m_actors.size());
+    for (Actor* actor : m_actors)
+    {
+        if (actor && actor->m_handle.IsValid() && actor->m_definition->m_faction == faction)
+        {
+            pendingActors.push_back(actor);
+        }
+    }
+    return pendingActors;
+}
+
 Actor* Map::GetClosestVisibleEnemy(Actor* instigator)
 {
     float  closestDistSq = FLT_MAX;

@@ -82,16 +82,17 @@ public:
     void HandleIncreaseAmbientIntensity();
     /// 
     /// Actor
-    Actor* AddActorsToMap(Actor* actor);
-    Actor* SpawnActor(const SpawnInfo& spawnInfo);
-    Actor* SpawnPlayer(PlayerController* playerController); // Spawn a marine actor at a random spawn point and possess it with the player.
-    void   CheckAndRespawnPlayer();
-    Actor* GetActorByHandle(ActorHandle handle) const;
-    Actor* GetActorByName(const std::string& name) const;
-    Actor* GetClosestVisibleEnemy(Actor* instigator); //Search the actor list to find actors meeting the provided criteria.
-    void   GetActorsByName(std::vector<Actor*>& inActors, const std::string& name) const;
-    Actor* DebugPossessNext(); // Have the player controller possess the next actor in the list that can be possessed
-    void   DeleteDestroyedActors(); // Delete any actors marked as destroyed.
+    Actor*              AddActorsToMap(Actor* actor);
+    Actor*              SpawnActor(const SpawnInfo& spawnInfo);
+    Actor*              SpawnPlayer(PlayerController* playerController); // Spawn a marine actor at a random spawn point and possess it with the player.
+    void                CheckAndRespawnPlayer();
+    Actor*              GetActorByHandle(ActorHandle handle) const;
+    Actor*              GetActorByName(const std::string& name) const;
+    std::vector<Actor*> GetActorsByFaction(std::string& faction);
+    Actor*              GetClosestVisibleEnemy(Actor* instigator); //Search the actor list to find actors meeting the provided criteria.
+    void                GetActorsByName(std::vector<Actor*>& inActors, const std::string& name) const;
+    Actor*              DebugPossessNext(); // Have the player controller possess the next actor in the list that can be possessed
+    void                DeleteDestroyedActors(); // Delete any actors marked as destroyed.
 
     /// 
     Game* m_game = nullptr;
