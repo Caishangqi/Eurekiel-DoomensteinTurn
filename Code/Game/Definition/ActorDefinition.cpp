@@ -158,6 +158,18 @@ ActorDefinition::ActorDefinition(const XmlElement& actorDefElement)
         }
     }
     printf("ActorDefinition::ActorDefinition    + Load Definition \"%s\" \n", m_name.c_str());
+
+    /// Dungeon Data
+    const XmlElement* dungeonElement = FindChildElementByName(actorDefElement, "DungeonData");
+    if (dungeonElement)
+    {
+        m_dungeonData._isDungeon            = true;
+        m_dungeonData.m_interactRadius      = ParseXmlAttribute(*dungeonElement, "interactRadius", m_dungeonData.m_interactRadius);
+        m_dungeonData.m_destroyWhenFinished = ParseXmlAttribute(*dungeonElement, "destroyWhenFinished", m_dungeonData.m_destroyWhenFinished);
+    }
+
+    
+    
 }
 
 AnimationGroup* ActorDefinition::GetAnimationGroupByName(std::string& name)

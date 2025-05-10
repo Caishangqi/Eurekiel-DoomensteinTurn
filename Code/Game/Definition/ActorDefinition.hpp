@@ -9,6 +9,7 @@
 #include "Engine/Math/Vec2.hpp"
 #include "Game/Framework/AnimationGroup.hpp"
 #include "Game/Framework/Sound.hpp"
+#include "Game/Gameplay/Data/PakData.hpp"
 
 class SpriteSheet;
 class Shader;
@@ -66,6 +67,10 @@ public:
     IntVec2                     m_cellCount     = IntVec2(8, 9);
     std::vector<AnimationGroup> m_animationGroups;
     std::vector<Sound>          m_sounds;
+
+    /// Dungeon
+    DungeonData m_dungeonData;
+
     /// Sounds
 
     /// Inventory

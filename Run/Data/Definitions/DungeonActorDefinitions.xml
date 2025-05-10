@@ -1,0 +1,16 @@
+﻿<Definitions>
+    <ActorDefinition name="DungeonType1" faction="Dungeon" canBePossessed="false" corpseLifetime="0.4" visible="true" dieOnSpawn="false">
+        <Collision radius="0.4" height="0.6" collidesWithWorld="true" collidesWithActors="false"/>
+        <Visuals size="1.6,1.6" pivot="0.5,0.0" billboardType="WorldUpOpposing" renderLit="true" renderRounded="false" shader="Data/Shaders/Diffuse" spriteSheet="Data/Images/Props/vendingMachine.png"
+                 cellCount="1,1">
+            <AnimationGroup name="Walk" secondsPerFrame="0.1" playbackMode="Once">
+                <Direction vector="1,0,0">
+                    <Animation startFrame="0" endFrame="0"/>
+                </Direction>
+            </AnimationGroup>
+        </Visuals>
+        <DungeonData interactRadius="1.2" destroyWhenFinished="true">
+
+        </DungeonData>
+    </ActorDefinition>
+</Definitions>

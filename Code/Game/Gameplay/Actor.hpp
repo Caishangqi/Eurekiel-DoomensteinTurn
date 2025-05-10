@@ -150,4 +150,5 @@ public:
 
 protected:
     virtual void InitLocalVertex();
+
 };
