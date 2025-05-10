@@ -21,8 +21,15 @@ public:
     virtual int               GetZOrder() const;
     virtual std::string       GetName() const;
     virtual bool              GetIsValid() const;
+    virtual bool              GetIsVisible() const { return m_bIsVisible; }
     /// Setter
     virtual void SetUserFocus();
+
+    virtual bool SetVisibility(bool bIsVisible)
+    {
+        m_bIsVisible = bIsVisible;
+        return m_bIsVisible;
+    }
 
     virtual void AddToViewport(int zOrder = 0);
     virtual void AddToPlayerViewport(PlayerController* player, int zOrder = 0);

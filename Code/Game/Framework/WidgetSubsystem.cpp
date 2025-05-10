@@ -82,7 +82,7 @@ void WidgetSubsystem::Render()
 {
     for (Widget* widget : m_widgets)
     {
-        if (widget && !widget->m_bIsGarbage)
+        if (widget && !widget->m_bIsGarbage && widget->GetIsVisible())
             widget->Render();
     }
 }
