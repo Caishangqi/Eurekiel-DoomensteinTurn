@@ -13,6 +13,7 @@
 #include "Game/Gameplay/Weapon.hpp"
 #include "Game/Framework/LoggerSubsystem.hpp"
 #include "Game/Gameplay/Widget/WidgetPlayerDeath.hpp"
+#include "Game/Gameplay/Widget/WidgetWorldPopup.hpp"
 
 
 PlayerController::PlayerController(Map* map): Controller(map)
@@ -33,6 +34,7 @@ PlayerController::~PlayerController()
 {
     printf("Object::PlayerController    - Destroy PlayerController and free resources\n");
     POINTER_SAFE_DELETE(m_worldCamera)
+    POINTER_SAFE_DELETE(m_widgetWorldPopup)
 }
 
 
@@ -50,6 +52,7 @@ void PlayerController::Update(float deltaSeconds)
     UpdateInput(deltaSeconds);
     UpdateWeapon(deltaSeconds);
     UpdateCamera(deltaSeconds);
+    HandleWorldPopupWidget(deltaSeconds);
 }
 
 void PlayerController::UpdateWeapon(float deltaSeconds)
@@ -114,8 +117,8 @@ void PlayerController::UpdateKeyboardInput(float deltaSeconds)
 
         if (g_theGame->m_currentState == GameState::PLAYING)
         {
-            if (g_theInput->WasMouseButtonJustPressed(KEYCODE_LEFT_MOUSE) && !possessActor->m_bIsDead)
-                GetActor()->m_currentWeapon->Fire();
+            /*if (g_theInput->WasMouseButtonJustPressed(KEYCODE_LEFT_MOUSE) && !possessActor->m_bIsDead)
+                GetActor()->m_currentWeapon->Fire();*/
         }
 
         Vec3 actorRotateIntention = Vec3::ZERO;
@@ -411,6 +414,35 @@ void PlayerController::HandleActorDead(float deltaSeconds)
             m_position          = Vec3(possessActor->m_position.x, possessActor->m_position.y, interpolate);
         }
     }
+}
+
+void PlayerController::HandleWorldPopupWidget(float deltaSeconds)
+{
+    UNUSED(deltaSeconds)
+    if (g_theGame->m_currentState != GameState::PLAYING) return;
+    if (!g_theGame->m_map) return;
+
+    Actor* posActor = g_theGame->m_map->GetActorByHandle(m_actorHandle);
+    if (!posActor) return;
+    for (Actor* actor : g_theGame->m_map->m_actors)
+    {
+        if (actor && actor->m_handle.IsValid() && actor->m_definition->m_dungeonData._isDungeon)
+        {
+            if (GetDistance2D(posActor->m_position.GetXY(), actor->m_position.GetXY()) < actor->m_definition->m_dungeonData.m_interactRadius)
+            {
+                if (m_widgetWorldPopup == nullptr)
+                {
+                    m_widgetWorldPopup = new WidgetWorldPopup(actor->m_position, actor);
+                    m_widgetWorldPopup->AddToPlayerViewport(this);
+                }
+                m_widgetWorldPopup->SetPointActor(actor);
+                m_widgetWorldPopup->SetVisibility(true);
+                return;
+            }
+        }
+    }
+    if (m_widgetWorldPopup)
+        m_widgetWorldPopup->SetVisibility(false);
 }
 
 DeviceType PlayerController::SetInputDeviceType(DeviceType newDeviceType)

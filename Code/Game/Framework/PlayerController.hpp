@@ -4,6 +4,7 @@
 #include "Engine/Core/EngineCommon.hpp"
 #include "Game/GameCommon.hpp"
 
+class WidgetWorldPopup;
 class Actor;
 class Camera;
 
@@ -40,6 +41,7 @@ public:
     void Render() const;
 
     void HandleActorDead(float deltaSeconds);
+    void HandleWorldPopupWidget(float deltaSeconds);
 
     /// Setter
     DeviceType SetInputDeviceType(DeviceType newDeviceType);
@@ -55,5 +57,7 @@ private:
 
     void HandleRayCast();
     void UpdateDebugMessage();
-    /// 
+
+    /// Hover Interact Widget
+    WidgetWorldPopup* m_widgetWorldPopup = nullptr;
 };
